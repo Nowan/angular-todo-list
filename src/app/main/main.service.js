@@ -10,7 +10,24 @@
         var service = this;
         
         //array of all services
-        service.tasks = [];
+        service.tasks = [
+            {
+                title: "task 1 title",
+                notes: "some notes",
+                isCompleted: false
+            },
+            {
+                title: "task 2 title",
+                notes: "some notes",
+                isCompleted: false
+            },
+            {
+                title: "task 3 title",
+                notes: "some notes",
+                isCompleted: true
+            }
+            
+        ];
         
         service.addTask = addTask;
         

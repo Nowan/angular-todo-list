@@ -1,1 +1,18 @@
-ToDoDesk
+<!--<div ng-repeat="task in deskCtrl.tasks">{{task.title}}</div>-->
+
+<md-content layout-padding flex>
+    <div ng-repeat="task in deskCtrl.tasks" layout style="margin: 0 auto;">
+    <md-whiteframe class="md-whiteframe-3dp" flex="95" >
+        <md-content layout="row" layout-padding>
+            <div>
+                <md-checkbox ng-model="task.isCompleted" aria-label="Is completed" class="md-primary">
+                </md-checkbox>
+            </div>
+            <div layout="column">
+                <span style="font-weight: bold; font-size: 18px">{{task.title}}</span>
+                <span style="padding-top: 8px; height: 10px">{{task.notes}}</span>
+            </div>
+        </md-content>
+    </md-whiteframe>
+    </div>
+</md-content>
