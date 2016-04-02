@@ -1,0 +1,8 @@
+.todo-sidebar{
+    width: 250px;
+}
+
+.todo-sidebar-item{
+    height: 50px;
+    text-align: left;
+}

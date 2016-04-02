@@ -1,11 +1,18 @@
-<md-sidenav ng-class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-xs')">
+<md-sidenav class="md-sidenav-left todo-sidebar" md-component-id="left" md-is-locked-open="$mdMedia('gt-xs')">
       <md-toolbar class="md-theme-indigo">
         <h1 class="md-toolbar-tools"></h1>
       </md-toolbar>
-      <md-content layout-padding>
+      <md-content>
         
-        <p hide-xs show-gt-xs>
-          Sidebar
-        </p>
+        <md-list hide-xs show-gt-xs>
+            <md-list-item class="todo-sidebar-item" ng-repeat="sidebarItem in mainCtrl.sidebarItems" ng-click="null">
+                <div>
+                <md-icon md-svg-icon="{{ sidebarItem.iconPath }}" ></md-icon>
+                <span style="padding-left: 20px;">
+                {{ sidebarItem.title }}
+                </span>
+                </div>
+            </md-list-item>
+        </md-list>
       </md-content>
     </md-sidenav>
