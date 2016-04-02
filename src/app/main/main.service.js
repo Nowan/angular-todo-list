@@ -5,11 +5,17 @@
         .module('todoList')
         .service('todoService', todoService);
 
-    //Service.$inject = ['dependency1'];
+    //todoService.$inject = ['$firebaseObject'];
     function todoService() {
         var service = this;
         
+        //firebase reference
+        //var ref = new Firebase("https://blistering-torch-5379.firebaseio.com");
+        // download the data into a local object
+        //service.tasks = $firebaseObject(ref);
+        
         //properties
+
         service.tasks = [
             {
                 title: "task 1 title",
