@@ -9,24 +9,16 @@
     function SidebarController(todoService) {
         var vm = this;
         
-        vm.sidebarItems = [
-            {
-                title: 'Clear All',
-                iconPath: 'assets/icons/ic_delete_black_48px.svg'
-            },
-            {
-                title: 'Clear Done',
-                iconPath: 'assets/icons/ic_clear_black_48px.svg'
-            },
-            {
-                title: 'Settings',
-                iconPath: 'assets/icons/ic_settings_black_48px.svg'
-            },
-            {
-                title: 'About',
-                iconPath: 'assets/icons/ic_about_black_48px.svg'
-            }
-        ];
-
+        vm.clearAll = function(){ todoService.clearAll(); };
+        vm.clearDone = function(){ todoService.clearDone(); };
+        vm.addTask = function() {
+                var task = {};
+                task.title = "test";
+                task.notes = "notes";
+                task.isCompleted = false;
+                //task contains title and notes 
+                //add task to the array
+                todoService.addTask(task);
+            };
     }
 })();

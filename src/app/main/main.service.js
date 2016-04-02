@@ -9,7 +9,7 @@
     function todoService() {
         var service = this;
         
-        //array of all services
+        //properties
         service.tasks = [
             {
                 title: "task 1 title",
@@ -29,13 +29,22 @@
             
         ];
         
+        //methods
         service.addTask = addTask;
+        service.clearAll = function(){ service.tasks.length=0; };
+        service.clearDone = clearDone;
         
-        //adds task to the base
         function addTask(task){
             task.isCompleted = false;
             service.tasks.push(task);
         };
+        
+        function clearDone(){
+            var comletedTasks = [];
+            for(var i=service.tasks.length-1;i>=0;i--)
+                if(service.tasks[i].isCompleted)
+                    service.tasks.splice(i,1);
+        }
         
         }
 })();

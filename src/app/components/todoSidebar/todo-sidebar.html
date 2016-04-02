@@ -6,11 +6,39 @@
       <md-content>
         
         <md-list hide-xs show-gt-xs>
-            <md-list-item class="todo-sidebar-item" ng-repeat="sidebarItem in sidebarCtrl.sidebarItems" ng-click="null">
+            
+            <md-list-item class="todo-sidebar-item" ng-click="sidebarCtrl.clearAll()">
                 <div>
-                <md-icon md-svg-icon="{{ sidebarItem.iconPath }}" ></md-icon>
+                <md-icon md-svg-icon="assets/icons/ic_delete_black_48px.svg" ></md-icon>
                 <span style="padding-left: 20px;">
-                {{ sidebarItem.title }}
+                    Clear All
+                </span>
+                </div>
+            </md-list-item>
+            
+            <md-list-item class="todo-sidebar-item" ng-click="sidebarCtrl.clearDone()">
+                <div>
+                <md-icon md-svg-icon="assets/icons/ic_clear_black_48px.svg" ></md-icon>
+                <span style="padding-left: 20px;">
+                    Clear Done
+                </span>
+                </div>
+            </md-list-item>
+            
+            <md-list-item class="todo-sidebar-item" ng-click="null">
+                <div>
+                <md-icon md-svg-icon="assets/icons/ic_settings_black_48px.svg" ></md-icon>
+                <span style="padding-left: 20px;">
+                    Settings
+                </span>
+                </div>
+            </md-list-item>
+            
+            <md-list-item class="todo-sidebar-item" ng-click="null">
+                <div>
+                <md-icon md-svg-icon="assets/icons/ic_about_black_48px.svg" ></md-icon>
+                <span style="padding-left: 20px;">
+                    About
                 </span>
                 </div>
             </md-list-item>
