@@ -1,18 +1,32 @@
-<md-dialog aria-label="Mango (Fruit)"  ng-cloak>
+<md-dialog aria-label="Add new todo" ng-cloak flex="40">
   <form>
     <md-dialog-content>
-      <div class="md-dialog-content" layout="column">
-          
+      <div class="md-dialog-content" layout="column" style="height: 200px;">
+          <div style="heigth: 100px;"><b>Add Item</b></div>
+          <form name="insertionForm">
+            <md-input-container style="height: 20px; margin-top: 40px;">
+                <label>Title</label>
+                <input required name="title" ng-model="iDialogCtrl.title">
+                <div ng-messages="insertionForm.title.$error">
+                    <div ng-message="required">required input!</div>
+                </div>
+            </md-input-container>
+            
+            <md-input-container style="height: 0px;">
+                <label>Notes</label>
+                <input ng-model="iDialogCtrl.notes">
+            </md-input-container>
+          </form>
       </div>
     </md-dialog-content>
     <md-dialog-actions layout="row">
 
       <span flex></span>
-      <md-button ng-click="iDialogCtrl.answer('not useful')">
-       Not Useful
+      <md-button ng-click="iDialogCtrl.cancel()">
+       CANCEL
       </md-button>
-      <md-button ng-click="iDialogCtrl.answer('useful')" style="margin-right:20px;">
-        Useful
+      <md-button ng-click="iDialogCtrl.answer()" style="margin-right:20px;">
+        OK
       </md-button>
     </md-dialog-actions>
   </form>

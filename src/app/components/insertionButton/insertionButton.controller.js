@@ -9,7 +9,7 @@
     function InsertionButtonController(todoService, $mdDialog, $mdMedia) {
         var vm = this;
         
-        vm.status = '  ';
+        vm.status = {};
         vm.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
         vm.showInsertionDialog = showInsertionDialog;
         
@@ -26,18 +26,17 @@
                 fullscreen: useFullScreen
             })
             .then(function(answer) {
-                //
+                //answer contains title and notes 
                 vm.status = answer;
             }, function() {
-                vm.status = 'You cancelled the dialog.';
+                //cancel
+                vm.status = {};
             });
                 vm.$watch(function() {
                 return $mdMedia('xs') || $mdMedia('sm');
             }, function(wantsFullScreen) {
                 vm.customFullscreen = (wantsFullScreen === true);
             });
-            
-            
             
         };
         
