@@ -3,10 +3,10 @@
 
     angular
         .module('todoList')
-        .directive('todoNavbar', todoNavbar);
+        .directive('todoSidebar', todoSidebar);
 
     //Directive.$inject = ['dependency1'];
-    function todoNavbar() {
+    function todoSidebar() {
         // Usage:
         //
         // Creates:
@@ -19,8 +19,7 @@
             restrict: 'E',
             scope: {
             },
-            templateUrl: "app/components/todoNavbar/todo-navbar.html",
-            css: "app/components/todoNavbar/todo-navbar.css"
+            templateUrl: "app/components/todoSidebar/todo-sidebar.html"
         };
         return directive;
         
