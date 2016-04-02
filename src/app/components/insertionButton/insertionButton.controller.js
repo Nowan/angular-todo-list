@@ -14,18 +14,34 @@
         vm.showInsertionDialog = showInsertionDialog;
         
         function showInsertionDialog(ev){
-            $mdDialog.show(
-      $mdDialog.alert()
-        .parent(angular.element(document.querySelector('#popupContainer')))
-        .clickOutsideToClose(true)
-        .title('This is an alert title')
-        .textContent('You can specify some description text in here.')
-        .ariaLabel('Alert Dialog Demo')
-        .ok('Got it!')
-        .targetEvent(ev)
-    );
+            var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && vm.customFullscreen;
+            
+            $mdDialog.show({
+                controller: 'InsertionDialogController',
+                controllerAs: 'iDialogCtrl',
+                templateUrl: 'app/components/insertionDialog/insertion-dialog.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose: false,
+                fullscreen: useFullScreen
+            })
+            .then(function(answer) {
+                //
+                vm.status = answer;
+            }, function() {
+                vm.status = 'You cancelled the dialog.';
+            });
+                vm.$watch(function() {
+                return $mdMedia('xs') || $mdMedia('sm');
+            }, function(wantsFullScreen) {
+                vm.customFullscreen = (wantsFullScreen === true);
+            });
+            
+            
             
         };
+        
+        
         
         vm.inheritedArray = todoService.testValues;
         /*
@@ -51,6 +67,7 @@
     });
   };
          */
+
 
     }
 })();
