@@ -9,7 +9,6 @@
     function InsertionButtonController(todoService, $mdDialog, $mdMedia) {
         var vm = this;
         
-        vm.status = {};
         vm.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
         vm.showInsertionDialog = showInsertionDialog;
         
@@ -25,12 +24,13 @@
                 clickOutsideToClose: false,
                 fullscreen: useFullScreen
             })
-            .then(function(answer) {
-                //answer contains title and notes 
-                vm.status = answer;
+            .then(function(task) {
+                //task contains title and notes 
+                //add task to the array
+                if(task.title=='') return;
+                todoService.addTask(task);
             }, function() {
-                //cancel
-                vm.status = {};
+                //cancel handler
             });
                 vm.$watch(function() {
                 return $mdMedia('xs') || $mdMedia('sm');

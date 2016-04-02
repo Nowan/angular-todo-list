@@ -9,16 +9,16 @@
     function todoService() {
         var service = this;
         
-        service.testValues = [
-            "test", "test2", "test3"
-        ]
+        //array of all services
+        service.tasks = [];
         
-        service.exposedFn = exposedFn;
+        service.addTask = addTask;
         
-        ////////////////
-
-        function exposedFn() { 
-            
-        }
+        //adds task to the base
+        function addTask(task){
+            task.isCompleted = false;
+            service.tasks.push(task);
+        };
+        
         }
 })();
