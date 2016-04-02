@@ -5,7 +5,7 @@
       <md-content>
         
         <md-list hide-xs show-gt-xs>
-            <md-list-item class="todo-sidebar-item" ng-repeat="sidebarItem in mainCtrl.sidebarItems" ng-click="null">
+            <md-list-item class="todo-sidebar-item" ng-repeat="sidebarItem in sidebarCtrl.sidebarItems" ng-click="null">
                 <div>
                 <md-icon md-svg-icon="{{ sidebarItem.iconPath }}" ></md-icon>
                 <span style="padding-left: 20px;">
@@ -14,5 +14,7 @@
                 </div>
             </md-list-item>
         </md-list>
+        
+        <div ng-repeat="testValue in sidebarCtrl.inheritedArray">{{testValue}}</div>
       </md-content>
     </md-sidenav>
