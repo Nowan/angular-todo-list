@@ -20,7 +20,7 @@
                 controllerAs: 'iDialogCtrl',
                 templateUrl: 'app/components/insertionDialog/insertion-dialog.html',
                 parent: angular.element(document.body),
-                targetEvent: ev,
+                //targetEvent: ev,
                 clickOutsideToClose: false,
                 fullscreen: useFullScreen
             })
