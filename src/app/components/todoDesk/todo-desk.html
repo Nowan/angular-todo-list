@@ -9,7 +9,7 @@
                 </md-checkbox>
             </div>
             <div layout="column">
-                <span style="font-weight: bold; font-size: 18px">{{task.title}}</span>
+                <span style="font-weight: bold; font-size: 18px;" ng-style="{'text-decoration': task.isCompleted?'line-through':'none'}">{{task.title}}</span>
                 <span style="padding-top: 8px; height: 10px">{{task.notes}}</span>
             </div>
         </md-content>
