@@ -13,8 +13,8 @@
         //
         var directive = {
             bindToController: true,
-            controller: 'MainController',
-            controllerAs: 'mainCtrl',
+            controller: 'SidebarController',
+            controllerAs: 'sidebarCtrl',
             link: link,
             restrict: 'E',
             scope: {

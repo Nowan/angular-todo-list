@@ -1,10 +1,10 @@
-<md-toolbar flex class="todo-navbar">
+<md-toolbar layout="row" layout-fill class="todo-navbar">
       <div class="md-toolbar-tools">
-        <md-button class="md-icon-button" aria-label="More" >
-          <md-icon md-svg-icon="assets/icons/ic_more_vert_white_48px.svg"></md-icon>
+        <md-button class="md-icon-button" aria-label="More" flex-xs="10" flex="0" ng-click="sidebarCtrl.toggleLeft()">
+            <md-icon md-svg-icon="assets/icons/ic_more_vert_white_48px.svg"></md-icon>
         </md-button>
-        <h2>
-          <span>Todo List</span>
-        </h2>
+        <h1>
+            Todo List
+        </h1>
       </div>
 </md-toolbar>
