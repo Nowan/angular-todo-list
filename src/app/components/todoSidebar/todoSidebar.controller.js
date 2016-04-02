@@ -27,8 +27,6 @@
                 iconPath: 'assets/icons/ic_about_black_48px.svg'
             }
         ];
-        
-        vm.inheritedArray = todoService.testValues;
 
     }
 })();

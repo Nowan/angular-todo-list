@@ -13,8 +13,8 @@
         //
         var directive = {
             bindToController: true,
-            controller: 'MainController',
-            controllerAs: 'mainCtrl',
+            controller: 'InsertionButtonController',
+            controllerAs: 'iButtonCtrl',
             link: link,
             restrict: 'E',
             scope: {
