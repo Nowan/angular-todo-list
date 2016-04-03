@@ -27,7 +27,6 @@
             })
             .then(function(task) {
                 //task contains title and notes 
-                //add task to the array
                 if(task.title=='') return;
                 firebaseService.addTask(task);
             }, function() {
