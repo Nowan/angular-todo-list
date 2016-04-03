@@ -10,5 +10,9 @@
         var vm = this;
         
         vm.tasks = todoService.tasks;
+        vm.completeTask = function(task){
+            task.isCompleted = !task.isCompleted;
+            todoService.saveTask(task);
+        };
     }
 })();
