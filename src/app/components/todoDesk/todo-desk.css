@@ -1,0 +1,7 @@
+md-checkbox.md-checked.indigo .md-icon {
+ background-color: darkblue;
+}
+
+md-checkbox.indigo .md-icon {
+ border-color: black;
+}

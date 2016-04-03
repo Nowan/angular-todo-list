@@ -19,6 +19,7 @@
                 controller: 'InsertionDialogController',
                 controllerAs: 'iDialogCtrl',
                 templateUrl: 'app/components/insertionDialog/insertion-dialog.html',
+                css: 'app/components/insertionDialog/insertion-dialog.css',
                 parent: angular.element(document.body),
                 //targetEvent: ev,
                 clickOutsideToClose: false,
