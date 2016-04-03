@@ -13,9 +13,21 @@
         templateUrl: 'app/main/main.html',
         controller: 'MainController',
         controllerAs: 'main'
+      })
+      .state('login',{
+          url: '/login',
+          templateUrl: 'app/views/login/login.html'
+      })
+      .state('profile',{
+          url: '/profile',
+          templateUrl: 'app/views/profile/profile.html'
+      })
+      .state('tasks',{
+          url: '/tasks',
+          templateUrl: 'app/views/tasks/tasks.html'
       });
 
-    $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/login');
   }
 
 })();

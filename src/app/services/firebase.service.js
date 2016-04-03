@@ -3,14 +3,17 @@
 
     angular
         .module('todoList')
-        .service('todoService', todoService);
+        .service('firebaseService', firebaseService);
 
-    todoService.$inject = ['$firebaseArray'];
-    function todoService($firebaseArray) {
+    firebaseService.$inject = ['$firebaseArray', '$firebaseAuth'];
+    function firebaseService($firebaseArray, $firebaseAuth) {
         var service = this;
         
         //firebase reference
         var ref = new Firebase("https://blistering-torch-5379.firebaseio.com");
+        
+        // an instance of the authentication service
+        var auth = $firebaseAuth(ref);
         
         // download the data into a local object
         service.tasks = $firebaseArray(ref);

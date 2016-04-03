@@ -5,8 +5,8 @@
         .module('todoList')
         .controller('InsertionButtonController', InsertionButtonController);
 
-    InsertionButtonController.$inject = ['todoService', '$mdDialog', '$mdMedia'];
-    function InsertionButtonController(todoService, $mdDialog, $mdMedia) {
+    InsertionButtonController.$inject = ['firebaseService', '$mdDialog', '$mdMedia'];
+    function InsertionButtonController(firebaseService, $mdDialog, $mdMedia) {
         var vm = this;
         
         vm.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
@@ -29,7 +29,7 @@
                 //task contains title and notes 
                 //add task to the array
                 if(task.title=='') return;
-                todoService.addTask(task);
+                firebaseService.addTask(task);
             }, function() {
                 //cancel handler
             });
@@ -41,33 +41,7 @@
             
         };
         
-        
-        
-        vm.inheritedArray = todoService.testValues;
-        /*
-        $scope.showAdvanced = function(ev) {
-    var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
-    $mdDialog.show({
-      controller: DialogController,
-      templateUrl: 'dialog1.tmpl.html',
-      parent: angular.element(document.body),
-      targetEvent: ev,
-      clickOutsideToClose:true,
-      fullscreen: useFullScreen
-    })
-    .then(function(answer) {
-      $scope.status = 'You said the information was "' + answer + '".';
-    }, function() {
-      $scope.status = 'You cancelled the dialog.';
-    });
-    $scope.$watch(function() {
-      return $mdMedia('xs') || $mdMedia('sm');
-    }, function(wantsFullScreen) {
-      $scope.customFullscreen = (wantsFullScreen === true);
-    });
-  };
-         */
-
+        vm.inheritedArray = firebaseService.testValues;
 
     }
 })();
