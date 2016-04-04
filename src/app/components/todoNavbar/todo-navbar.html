@@ -1,11 +1,22 @@
 <md-toolbar layout="row" layout-fill class="todo-navbar">
       <div class="md-toolbar-tools todo-navbar">
-        <md-button class="md-icon-button" aria-label="More" flex="10" hide-gt-xs ng-click="navbarCtrl.toggleSidebar()" ng-show="navbarCtrl.$state.current.name=='tasks'">
-            <md-icon md-svg-icon="assets/icons/ic_more_vert_white_48px.svg"></md-icon>
-        </md-button>
-        <span flex-offset-xs="10" flex-offset="5">
+          <div  flex="10" hide-gt-xs ng-show="navbarCtrl.$state.current.name=='tasks'">
+            <md-button class="md-icon-button" aria-label="More" ng-click="navbarCtrl.toggleSidebar()">
+                <md-icon md-svg-icon="assets/icons/ic_more_vert_white_48px.svg"></md-icon>
+            </md-button>
+          </div>
+        <span flex-offset-xs="10" flex-offset="5" flex>
             {{navbarCtrl.currentTitle()}}
         </span>
+        
+        <div layout="row" style="width: 100px;">
+            <md-button class="md-icon-button" aria-label="More" ng-click="navbarCtrl.toggleSidebar()">
+                <md-icon md-svg-icon="assets/icons/ic_clear_all_white_48px.svg"></md-icon>
+            </md-button>
+            <md-button class="md-icon-button" aria-label="More" ng-click="navbarCtrl.toggleSidebar()">
+                <md-icon md-svg-icon="assets/icons/ic_account_circle_white_48px.svg"></md-icon>
+            </md-button>
+        </div>
       </div>
       
 </md-toolbar>
