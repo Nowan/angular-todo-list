@@ -46,7 +46,7 @@
                     $state.go('profile',{ "profileID": service.authData.uid });
                 }
             }
-            else if(toState.name=="profile" && !service.isLoggedIn()) {
+            else if((toState.name=="profile" || toState.name=="tasks" )&& !service.isLoggedIn()) {
                 event.preventDefault();
                 $state.go('login')
             };
