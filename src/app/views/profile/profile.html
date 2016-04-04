@@ -1,8 +1,8 @@
-<div layout="column" layout-fill layout-align="start center">
-    
-    <md-content layout="row" layout-fill layout-align="space-around center">
-        <md-button ng-click="profileCtrl.showTasksView()">View tasks</md-button>
-        <md-button ng-click="profileCtrl.logOut()">Log Out</md-button>
-    </md-content>
-    
+<div layout="column" layout-fill layout-align="space-around center">
+    <md-whiteframe class="md-whiteframe-10dp" flex style="margin-top: 50px; width: 400px;">
+        <md-content layout-padding layout="column">
+            <md-button ng-click="profileCtrl.showTasksView()" class="md-raised md-primary">View tasks</md-button>
+            <md-button ng-click="profileCtrl.logOut()" class="md-raised md-primary">Log Out</md-button>
+        </md-content>
+    </md-whiteframe>
 </div>

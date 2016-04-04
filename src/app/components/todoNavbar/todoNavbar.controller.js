@@ -5,13 +5,13 @@
         .module('todoList')
         .controller('NavbarController', NavbarController);
 
-    NavbarController.$inject = ['$state','$mdSidenav','firebaseService'];
-    function NavbarController($state,$mdSidenav,firebaseService) {
+    NavbarController.$inject = ['$state','$mdSidenav','firebaseService', 'sidebarService'];
+    function NavbarController($state,$mdSidenav,firebaseService, sidebarService) {
         var vm = this;
         
         vm.$state = $state;
         
-        vm.toggleSidebar = buildToggler('left');
+        vm.toggleSidebar = function(){ sidebarService.toggleSidebar(); };
         vm.currentTitle = currentTitle;
         
         function currentTitle(){
@@ -27,14 +27,5 @@
             }
         }
         
-        function buildToggler(navID) {
-            return function() {
-                $mdSidenav(navID)
-                    .toggle()
-                    .then(function () {
-                        $log.debug("toggle " + navID + " is done");
-                    });
-            }
-        };
     }
 })();
