@@ -9,13 +9,8 @@
     function ProfileController(firebaseService, $state) {
         var vm = this;
         
-        vm.showTasksView = showTasksView;
+        vm.goToTasks = function(){ $state.go('tasks', { "profileID": firebaseService.authData.uid }); };
         vm.logOut = logOut;
-        
-        function showTasksView(){
-            console.log("Go to tasks"); 
-            $state.go('tasks', { "profileID": firebaseService.authData.uid });
-        };
         
         function logOut() { 
             firebaseService.unauth(); 

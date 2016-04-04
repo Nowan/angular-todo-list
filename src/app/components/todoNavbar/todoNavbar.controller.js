@@ -11,8 +11,10 @@
         
         vm.$state = $state;
         
-        vm.toggleSidebar = function(){ sidebarService.toggleSidebar(); };
         vm.currentTitle = currentTitle;
+        vm.goToTasks = function(){ $state.go('tasks', { "profileID": firebaseService.authData.uid }); };
+        vm.goToProfile = function(){ $state.go('profile', { "profileID": firebaseService.authData.uid }); };
+        vm.toggleSidebar = function(){ sidebarService.toggleSidebar(); };
         
         function currentTitle(){
             switch(vm.$state.current.name){
@@ -25,7 +27,7 @@
                 case 'tasks':
                     return "Todo List";
             }
-        }
+        };
         
     }
 })();
