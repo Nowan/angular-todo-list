@@ -1,10 +1,10 @@
 <md-toolbar layout="row" layout-fill class="todo-navbar">
       <div class="md-toolbar-tools todo-navbar">
-        <md-button class="md-icon-button" aria-label="More" flex="10" hide-gt-xs ng-click="sidebarCtrl.toggleLeft()">
+        <md-button class="md-icon-button" aria-label="More" flex="10" hide-gt-xs ng-click="navbarCtrl.toggleSidebar()" ng-show="navbarCtrl.$state.current.name=='tasks'">
             <md-icon md-svg-icon="assets/icons/ic_more_vert_white_48px.svg"></md-icon>
         </md-button>
         <span flex-offset-xs="10" flex-offset="5">
-            Todo List
+            {{navbarCtrl.currentTitle()}}
         </span>
       </div>
       

@@ -5,12 +5,11 @@
         .module('todoList')
         .service('firebaseService', firebaseService);
 
-    firebaseService.$inject = ['$firebaseArray', '$firebaseAuth', '$rootScope', '$state'];
-    function firebaseService($firebaseArray, $firebaseAuth, $rootScope, $state) {
+    firebaseService.$inject = ['$firebaseArray', '$firebaseObject', '$firebaseAuth', '$rootScope', '$state'];
+    function firebaseService($firebaseArray, $firebaseObject, $firebaseAuth, $rootScope, $state) {
         var service = this;
         
-        //firebase reference
-        var ref = new Firebase("https://blistering-torch-5379.firebaseio.com");
+        var ref = new Firebase("https://blistering-torch-5379.firebaseio.com");//firebase reference
         
         // an instance of the authentication service
         var auth = $firebaseAuth(ref);
@@ -18,8 +17,14 @@
         //params
         service.authData = ref.getAuth();
         service.error = null;
-        //service.userID = null;
-        service.tasks = null;
+        if(service.authData){
+            var userRef = ref.child("users").child(service.authData.uid);//reference to the current user
+            service.userData = $firebaseObject(userRef);
+            service.tasks = $firebaseArray(userRef.child("tasks"));}
+        else {
+            service.tasks= null;
+            service.userData = null;
+        }
         service.isLoggedIn = function(){ return service.authData!=null; };
         
         //methods
@@ -65,7 +70,7 @@
                     var userRef = ref.child("users").child(authData.uid);//reference to the current user
                     
                     service.tasks = $firebaseArray(userRef.child("tasks"));
-                    
+                    console.log(authData);
                     service.authData = authData;
                     callback();
                 }

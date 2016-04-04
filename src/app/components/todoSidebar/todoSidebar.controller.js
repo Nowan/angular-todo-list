@@ -5,14 +5,15 @@
         .module('todoList')
         .controller('SidebarController', SidebarController);
 
-    SidebarController.$inject = ['firebaseService', '$mdDialog', '$timeout', '$mdSidenav', '$log'];
-    function SidebarController(firebaseService, $mdDialog, $timeout, $mdSidenav, $log) {
+    SidebarController.$inject = ['firebaseService', '$mdDialog', '$timeout', '$mdSidenav', '$log', '$state'];
+    function SidebarController(firebaseService, $mdDialog, $timeout, $mdSidenav, $log, $state) {
         var vm = this;
         
         vm.clearAll = function(){ firebaseService.clearAll(); };
         vm.clearDone = function(){ firebaseService.clearDone(); };
         vm.showAlert = showAlert;
         vm.toggleLeft = buildToggler('left');
+        vm.$state = $state;
         
         function showAlert(ev){
             $mdDialog.show(
