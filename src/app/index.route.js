@@ -10,24 +10,26 @@
     $stateProvider
       .state('home', {
         url: '/',
-        templateUrl: 'app/main/main.html',
-        controller: 'MainController',
-        controllerAs: 'main'
+        redirectTo: 'login'
       })
       .state('login',{
           url: '/login',
-          templateUrl: 'app/views/login/login.html'
+          template: '<todo-login></todo-login>'
+      })
+      .state('registration',{
+          url: '/registration',
+          template: '<todo-registration></todo-registration>'
       })
       .state('profile',{
-          url: '/profile',
-          templateUrl: 'app/views/profile/profile.html'
+          url: '/profile/:profileID',
+          template: '<todo-profile></todo-profile>'
       })
       .state('tasks',{
-          url: '/tasks',
-          templateUrl: 'app/views/tasks/tasks.html'
+          url: '/profile/:profileID/tasks',
+          template: '<todo-tasks></todo-tasks>'
       });
 
-    $urlRouterProvider.otherwise('/login');
+    $urlRouterProvider.otherwise('/');
   }
 
 })();

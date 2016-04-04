@@ -32,11 +32,12 @@
             }, function() {
                 //cancel handler
             });
-                vm.$watch(function() {
+            /*
+            vm.$watch(function() {
                 return $mdMedia('xs') || $mdMedia('sm');
             }, function(wantsFullScreen) {
                 vm.customFullscreen = (wantsFullScreen === true);
-            });
+            });*/
             
         };
         

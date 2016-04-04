@@ -1,0 +1,33 @@
+<div layout="column" layout-fill layout-align="start center">
+
+    <md-toolbar>
+        <div class="md-toolbar-tools" layout-align="center center">
+            <span>Registration</span>
+        </div>
+    </md-toolbar>
+    
+    <md-whiteframe class="md-whiteframe-10dp" flex style="margin-top: 50px;">
+        <md-content layout-padding>
+         <form name="regform" layout="column" layout-align="center center">
+             <md-input-container>
+                <label>Email</label>
+                <input required md-no-asterisk name="email" ng-model="registrationCtrl.email" type="email">
+                <div ng-messages="regform.email.$error">
+                    <div ng-message="required">Email is required.</div>
+                </div>
+            </md-input-container>
+            <md-input-container style="margin-top: -20px;">
+                <label>Password</label>
+                <input required md-no-asterisk name="password" ng-model="registrationCtrl.password" type="password">
+                <div ng-messages="regform.password.$error">
+                    <div ng-message="required">Password is required.</div>
+                </div>
+            </md-input-container>
+            <md-button class="md-accent" ng-click="registrationCtrl.createUser()">Sign Up</md-button>
+         </form>
+         </md-content>
+    </md-whiteframe>
+    <div>  
+       error: {{registrationCtrl.error}}
+    </div>
+</div>

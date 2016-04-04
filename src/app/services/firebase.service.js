@@ -5,8 +5,8 @@
         .module('todoList')
         .service('firebaseService', firebaseService);
 
-    firebaseService.$inject = ['$firebaseArray', '$firebaseAuth'];
-    function firebaseService($firebaseArray, $firebaseAuth) {
+    firebaseService.$inject = ['$firebaseArray', '$firebaseAuth', '$rootScope', '$state'];
+    function firebaseService($firebaseArray, $firebaseAuth, $rootScope, $state) {
         var service = this;
         
         //firebase reference
@@ -16,31 +16,85 @@
         var auth = $firebaseAuth(ref);
         
         //params
-        service.authData = null;
-        service.userID = null;
-        service.tasks = $firebaseArray(ref); // download the data into a local object
+        service.authData = ref.getAuth();
+        service.error = null;
+        //service.userID = null;
+        service.tasks = null;
+        service.isLoggedIn = function(){ return service.authData!=null; };
         
         //methods
         service.addTask = addTask;
+        service.authWithPassword = authWithPassword;
         service.clearAll = clearAll;
         service.clearDone = clearDone;
         service.createUser = createUser;
         service.saveTask = saveTask;
+        service.unauth = function(){ ref.unauth(); service.authData=null; };
         
+        //listeners
+        $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams) { //route state change listener
+            console.log(service.isLoggedIn());
+            console.log(toState.name);
+            if(toState.name=="login" || toState.name=="registration"){
+                if(service.isLoggedIn()) {
+                    event.preventDefault();
+                    $state.go('profile',{ "profileID": service.authData.uid });
+                }
+            }
+            else if(toState.name=="profile" && !service.isLoggedIn()) {
+                event.preventDefault();
+                $state.go('login')
+            };
+        });
+        
+        //methods definitions
         function addTask(task){
             task.isCompleted = false;
             service.tasks.$add(task);
         };
         
-        function createUser(email,password){
-            $firebaseAuth.$createUser({
+        function authWithPassword(email, password, callback){
+            ref.authWithPassword({
                 email: email,
-                password: password
-            }).then(function(userData) {
-                //if operation successful - save user id
-                service.userID = userData.uid;
-            }).catch(function(error) {
-                //$scope.error = error;
+                password : password
+            }, function(error, authData) {
+                if (error) {
+                    service.error = error;
+                    callback();
+                } else {
+                    var userRef = ref.child("users").child(authData.uid);//reference to the current user
+                    
+                    service.tasks = $firebaseArray(userRef.child("tasks"));
+                    
+                    service.authData = authData;
+                    callback();
+                }
+            });
+        }
+        
+        function createUser(email,password,callback){
+            ref.createUser({
+                    email: email,
+                    password : password
+                }, function(error, userData) {
+                    if (error) {
+                        service.error = error;
+                        callback();
+                    } else {
+                        //service.userID = userData.uid;
+                        console.log(userData);
+                        
+                        var userRef = ref.child("users").child(userData.uid);//reference to the current user
+                        
+                        //check, whether the user table exist in database
+                        userRef.set({
+                            provider: "password",
+                            name: email.replace(/@.*/, ''),
+                            tracks: []
+                        });
+                        
+                        callback();   
+                    }
             });
         }
         
@@ -58,11 +112,6 @@
         function saveTask(task){
               service.tasks.$save(task);
         };
-        
-        // asynchronous function - any time auth status updates, add the user data to scope
-        auth.$onAuth(function(authData) {
-            service.authData = authData;
-        });
         
         }
 })();
